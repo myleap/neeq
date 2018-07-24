@@ -1,0 +1,93 @@
+<view>
+  <view class="weui-search-bar">
+    <view class="weui-search-bar__form">
+      <view class="weui-search-bar__box">
+        <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+        <input type="text" class="weui-search-bar__input" confirm-type="搜索" placeholder="搜索" bindinput="toSearch" />
+      </view>
+      <label class="weui-search-bar__label" bindtap="showInput">
+        <icon class="weui-icon-search" type="search" size="14"></icon>
+        <view class="weui-search-bar__text">搜索</view>
+      </label>
+    </view>
+  </view>
+  <view class="weui-cells weui-cells_after-title">
+    <navigator class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <view class="weui-flex">
+        <view class="weui-flex__item">
+          <view>序号</view>
+        </view>
+        <view class="weui-flex__item">
+          <view>公司名</view>
+        </view>
+        <view class="weui-flex__item">
+          <view>代码</view>
+        </view>
+        <view class="weui-flex__item">
+          <view>评分</view>
+        </view>
+        <view class="weui-flex__item">
+          <view></view>
+        </view>
+      </view>
+    </navigator>
+    <navigator class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <view class="weui-flex">
+        <view class="weui-flex__item">
+          <view>1</view>
+        </view>
+        <view class="weui-flex__item">
+          <view>中 科 软</view>
+        </view>
+        <view class="weui-flex__item">
+          <view>430002</view>
+        </view>
+        <view class="weui-flex__item">
+          <view>4.5</view>
+        </view>
+        <view class="weui-flex__item">
+          <button class="weui-btn mini-btn" type="warn" size="mini">评价</button>
+        </view>
+      </view>
+    </navigator>
+    <navigator class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <view class="weui-flex">
+        <view class="weui-flex__item">
+          <view>2</view>
+        </view>
+        <view class="weui-flex__item">
+          <view>北京时代</view>
+        </view>
+        <view class="weui-flex__item">
+          <view>430003</view>
+        </view>
+        <view class="weui-flex__item">
+          <view>3.3</view>
+        </view>
+        <view class="weui-flex__item">
+          <button class="weui-btn mini-btn" type="warn" size="mini">评价</button>
+        </view>
+      </view>
+    </navigator>
+    <navigator class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <view class="weui-flex">
+        <view class="weui-flex__item">
+          <view>3</view>
+        </view>
+        <view class="weui-flex__item">
+          <view>绿创设备</view>
+        </view>
+        <view class="weui-flex__item">
+          <view>430004</view>
+        </view>
+        <view class="weui-flex__item">
+          <view>3.2</view>
+        </view>
+        <view class="weui-flex__item">
+          <button class="weui-btn mini-btn" type="warn" size="mini">评价</button>
+        </view>
+      </view>
+    </navigator>
+  </view>
+
+</view>

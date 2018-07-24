@@ -1,0 +1,18 @@
+<view class="weui-cells weui-cells_after-title">
+         <navigator url="./note/notecompany" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+          <view class="weui-cell__bd">关注公司设置</view>
+          <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+         </navigator>
+         <navigator url="./note/noteindustry" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+          <view class="weui-cell__bd">关注行业设置</view>
+          <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+         </navigator>
+         <navigator url="./note/noteconcept" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+          <view class="weui-cell__bd">关注概念设置</view>
+          <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+         </navigator>
+         <navigator url="./note/notearea" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+          <view class="weui-cell__bd">关注区域设置</view>
+          <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+         </navigator>
+</view>

@@ -1,0 +1,188 @@
+<view class="page">
+  <view class="navbar" scroll-x style="display:flex;position:fixed;top:0px;left:0px;">
+    <block wx:for="{{tabs}}" wx:key="*this">
+      <view id="{{index}}" style="width:250rpx;display:flex;" bindtap="tabClick">
+        <view style="text-align:center;width:70px;height:70px;padding:10px {{(barwidth-70)/2}}px;">
+          <image style="width:70px;height:70px;" src="{{activeIndex == index ? item.urlselect : item.url}}" />
+        </view>
+      </view>
+    </block>
+  </view>
+  <scroll-view scroll-y style="height:{{winHeight}}px;" scroll-top="{{scroll}}">
+    <view style="padding-bottom:50px;padding-top:90px;">
+      <view hidden="{{activeIndex != 0}}">
+        <view style="margin:10rpx 30rpx;background-color:white;">
+          <view style="padding:20rpx;display:flex">
+            <view style="width:50%;">
+              总分:{{detail.totalscore}}
+            </view>
+            <view style="width:50%;">
+              <button class="weui-btn mini-btn" bindtap="toEvaluateP" type="primary" size="mini">发起评价</button>
+            </view>
+          </view>
+          <view style="padding:20rpx;display:flex">
+            <view style="width:50%;">
+              行业景气度:{{detail.category1}}
+            </view>
+            <view style="width:50%;">
+              创新能力:{{detail.category2}}
+            </view>
+          </view>
+          <view style="padding:20rpx;display:flex">
+            <view style="width:50%;">
+              核心竞争力:{{detail.category3}}
+            </view>
+            <view style="width:50%;">
+              公司治理:{{detail.category4}}
+            </view>
+          </view>
+          <view style="padding:20rpx;display:flex">
+            <view style="width:50%;">
+              财务指标:{{detail.category5}}
+            </view>
+            <view style="width:50%;">
+              资本运作:{{detail.category6}}
+            </view>
+          </view>
+        </view>
+        <view style="margin:10rpx 30rpx;background-color:white;">
+          <view style="padding:20rpx;">专家评审团</view>
+          <view style="padding:20rpx;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp:4;overflow: hidden;">
+            {{detail.zjpst?detail.zjpst:"暂无内容"}}
+          </view>
+        </view>
+        <view style="margin:10rpx 30rpx;background-color:white;">
+          <view style="border-bottom:1rpx solid #BBB;">
+            <view style="display:inline-block;padding:10rpx;border-bottom:1rpx solid red;">全部评论
+            </view>
+          </view>
+          <view wx:if="{{comments.length>0}}">
+            <block wx:for="{{comments}}">
+              <view style="display:flex;margin-bottom:30rpx;border-bottom:1rpx solid #e6e6e6;">
+                <view style="width:100rpx;margin:10rpx 20rpx;">
+                  <image src="{{item.avatar}}" style="width:100rpx;height:100rpx;border-radius:50%;" />
+                </view>
+                <view style="margin:10rpx 10rpx;width:100%;">
+                  <view style="line-height:50rpx;height:50rpx;font-size:30rpx;" wx:if="{{item.type==0}}">
+                    {{item.nice_name}}
+                  </view>
+                  <view style="line-height:50rpx;height:50rpx;font-size:30rpx;" wx:if="{{item.type!=0}}">
+                    {{item.name}}
+                  </view>
+                  <view style="font-size:25rpx;color:#bbb;line-height:50rpx;height:50rpx;" wx:if="{{item.type!=0}}">
+                    {{item.company}} {{item.job}}
+                    <view style="float:right;">{{item.createtime}} </view>
+                  </view>
+                  <view style="line-height:50rpx;height:50rpx;" wx:if="{{item.type==0}}">
+                    <view style="float:right;">{{item.createtime}} </view>
+                  </view>
+                  <view style="font-size:35rpx;">
+                    {{item.content}}
+                  </view>
+                </view>
+              </view>
+            </block>
+          </view>
+          <view wx:if="{{comments.length==0}}" style="padding:20rpx;text-align:center;">
+            暂无评论...
+          </view>
+          <view bindtap="loadMoreComments" wx:if="{{loadMore}}" style="padding:20rpx;text-align:center;color:#ddd;">
+            查看更多评论...
+          </view>
+          <view wx:if="{{!loadMore}}" style="padding:20rpx;text-align:center;color:#ddd;">
+            已无更多评论。
+          </view>
+        </view>
+        <view bindtap="toCommentsPage" style="z-index:11;background-color:white;position:fixed;bottom:0px;height:40px;display:flex;width:100%;">
+          
+          <view style="border:1px solid #ddd;border-radius:10px;width:80%;position:absolute;left:0px;padding:0px 18px;margin-left:18px;line-height:30px;height:30px;font-size:30rpx;color:#ddd;margin-top:5px;">
+            说点什么吧...
+          </view>
+        </view>
+
+
+      </view>
+      <view class="weui-panel__bd" hidden="{{activeIndex != 1}}">
+        <view class="weui-panel weui-panel_access">
+          <view class="weui-panel__bd">
+            <block wx:for="{{reports}}">
+              <view bindtap="openFile" id="{{item.path}}" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+                <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                  <view class="weui-media-box__title">{{item.name}} {{item.code}}</view>
+                  <view class="weui-media-box__desc">{{item.title}}</view>
+                  <view class="weui-media-box__desc">{{item.createtime}}</view>
+                </view>
+                <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                  <image wx:if="{{item.type==3}}" class="weui-media-box__thumb" src="../../images/word.png" />
+                  <image wx:if="{{item.type==1}}" class="weui-media-box__thumb" src="../../images/pdf.png" />
+                  <image wx:if="{{item.type==2}}" class="weui-media-box__thumb" src="../../images/ppt.png" />
+                </view>
+              </view>
+            </block>
+            <view wx:if="{{showmore}}" class="weui-cell weui-cell_access" bindtap="loadMoreReports">
+              <view style="text-align:center;color:#aaa;width:100%;">查看更多>></view>
+            </view>
+            <view wx:if="{{!showmore}}" class="weui-cell weui-cell_access">
+              <view style="text-align:center;color:#aaa;width:100%;">已无更多数据</view>
+            </view>
+          </view>
+
+        </view>
+      </view>
+      <view class="weui-panel__bd" hidden="{{activeIndex != 2}}">
+        <block wx:for="{{additions}}">
+          <view style="background-color:white;margin:30rpx 20rpx;border:1px solid #e6e6e6;">
+            <view style="position:relative;padding:10rpx 20rpx;border-bottom:1px solid #eee;height:40px;">
+              <view>
+                {{item.name}}({{item.code}})
+              </view>
+              <view wx:if="{{item.isjoin==0}}" style="padding:10rpx 20rpx;position:absolute;top:0rpx;right:10rpx;">
+                <button bindtap="joinAddition" id="{{index}}" class="weui-btn " type="primary" size="mini">意向参与</button>
+              </view>
+              <view wx:if="{{item.isjoin==1}}" style="padding:10rpx 20rpx;position:absolute;top:0rpx;right:10rpx;">
+                <button class="weui-btn " type="primary" style="background-color:#eee" size="mini">已提交</button>
+              </view>
+            </view>
+            <view style="padding:10rpx 20rpx;">
+              增发价格：{{item.price}}
+            </view>
+            <view style="padding:10rpx 20rpx;">
+              增发数量(万股)：{{item.amount}}
+            </view>
+            <view style="padding:10rpx 20rpx;">
+              预计募集资金(万元)：{{item.mjzj}}
+            </view>
+            <view style="padding:10rpx 20rpx;">
+              方案进度：{{item.fajd}}
+            </view>
+            <view style="padding:10rpx 20rpx;">
+              预案公告日：{{item.yaggr}}
+            </view>
+          </view>
+        </block>
+        <view wx:if="{{showmore}}" class="weui-cell weui-cell_access" bindtap="loadMoreAdditions">
+          <view style="text-align:center;color:#aaa;width:100%;">查看更多>></view>
+        </view>
+        <view wx:if="{{!showmore}}" class="weui-cell weui-cell_access">
+          <view style="text-align:center;color:#aaa;width:100%;">已无更多数据</view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+  <view bindtap="blurEvent" style="display:{{commentareadisplay?'block':'none'}};position:absolute;top:0px;left:0px;z-index:13;width:100%;height:100%;background-color:black;opacity:0.4;">
+  </view>
+  <view style="display:{{commentareadisplay?'block':'none'}};position:absolute;top:0px;left:0px;z-index:14;width:100%;height:100%;">
+    <view style="display:{{commentareadisplay?'block':'none'}};position:fixed;z-index:14;top:0px;left:0px;width:100%;background-color:white;">
+      <form bindsubmit="bindFormSubmit">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__bd">
+            <textarea bindblur="blurEvent" focus="{{focus}}" class="weui-textarea" style="height:200rpx;" name="text" placeholder="说点什么呗..." />
+          </view>
+        </view>
+        <view class="weui-btn-area">
+          <button class="weui-btn" form-type="submit" type="primary">发表</button>
+        </view>
+      </form>
+    </view>
+  </view>
+</view>

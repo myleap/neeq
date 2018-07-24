@@ -1,0 +1,7 @@
+.weui-flex{
+    text-align: center;
+    width:100%;
+}
+.weui-cells{
+    font-size: 30rpx;
+}

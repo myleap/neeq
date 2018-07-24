@@ -1,0 +1,171 @@
+<view class="page">
+  <view class="">
+    <navigator class="weui-search-bar" url="./company/search?type=detail">
+      <view class="weui-search-bar__form">
+        <view class="weui-search-bar__box">
+          <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+          <input type="text" class="weui-search-bar__input" confirm-type="搜索" placeholder="搜索" />
+        </view>
+        <label class="weui-search-bar__label">
+          <icon class="weui-icon-search" type="search" size="14"></icon>
+          <view class="weui-search-bar__text">搜索</view>
+        </label>
+      </view>
+    </navigator>
+    <view class="weui-tab">
+      <view class="navbar" style="display:flex;">
+        <block wx:for="{{tabs}}" wx:key="*this">
+          <view id="{{index}}" style="width:250rpx;display:flex;" bindtap="tabClick">
+            <view style="text-align:center;width:70px;height:70px;padding:10px {{(barwidth-70)/2}}px;">
+              <image style="width:70px;height:70px;" src="{{activeIndex == index ? item.urlselect : item.url}}" />
+            </view>
+          </view>
+        </block>
+      </view>
+      <view class="weui-tab__panel">
+        <swiper style="height:{{scrollheight}}px;" bindchange="changeEvent" current="{{activeIndex}}">
+          <swiper-item style="height:{{scrollheight}}px;position:absolute;top:0px;width:100%;transform:translate(0%, 0%) translateZ(0px);">
+            <scroll-view scroll-top="{{evaluatescrolltop}}" style="height:{{scrollheight}}px;" class="weui-tab__content" scroll-y>
+              <scroll-view scroll-x style="width:100%;white-space:nowrap;">
+                <view style="display:flex;text-align:center;">
+                  <view id="0" bindtap="sortTabClick" style="display:inline-block;width:150rpx;padding:10px 15px;font-size:30rpx;color:{{activeSortIndex==0?'#d81e06':'#000000'}};">
+                    最新
+                    <image wx:if="{{activeSortIndex==0}}" src="../../images/rec.png" style="width:30rpx;height:30rpx;"></image>
+                  </view>
+                  <view id="1" bindtap="sortTabClick" style="display:inline-block;width:150rpx;padding:10px 15px;font-size:30rpx;color:{{activeSortIndex==1?'#d81e06':'#000000'}};">
+                    最具创新力
+                    <image wx:if="{{activeSortIndex==1}}" src="../../images/rec.png" style="width:30rpx;height:30rpx;"></image>
+                  </view>
+                  <view id="2" bindtap="sortTabClick" style="display:inline-block;width:150rpx;padding:10px 15px;font-size:30rpx;color:{{activeSortIndex==2?'#d81e06':'#000000'}};">
+                    最具竞争力
+                    <image wx:if="{{activeSortIndex==2}}" src="../../images/rec.png" style="width:30rpx;height:30rpx;"></image>
+                  </view>
+                  <view id="3" bindtap="sortTabClick" style="display:inline-block;width:150rpx;padding:10px 15px;font-size:30rpx;color:{{activeSortIndex==3?'#d81e06':'#000000'}};">
+                    最佳资本运作
+                    <image wx:if="{{activeSortIndex==3}}" src="../../images/rec.png" style="width:30rpx;height:30rpx;"></image>
+                  </view>
+                </view>
+              </scroll-view>
+              <view class="weui-cells weui-cells_after-title">
+                <view class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                  <view class="weui-flex">
+                    <view class="weui-flex__item">
+                      <view>序号</view>
+                    </view>
+
+                    <view class="weui-flex__item">
+                      <view>代码</view>
+                    </view>
+                    <view class="weui-flex__item">
+                      <view>公司名</view>
+                    </view>
+                    <view class="weui-flex__item">
+                      <view>评分</view>
+                    </view>
+                  </view>
+                </view>
+                <block wx:for="{{companys}}" wx:key="id">
+                  <view id="{{index}}" bindtap="toCom" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                    <view class="weui-flex">
+                      <view class="weui-flex__item">
+                        <view>{{index+1}}</view>
+                      </view>
+
+                      <view class="weui-flex__item">
+                        <view>{{item.code}}</view>
+                      </view>
+                      <view class="weui-flex__item">
+                        <view>{{item.name}}</view>
+                      </view>
+                      <view class="weui-flex__item">
+                        <view>{{item.totalscore}}</view>
+                      </view>
+                    </view>
+                    <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+                  </view>
+                </block>
+                <view wx:if="{{showmore}}" class="weui-cell weui-cell_access" bindtap="loadMoreCompanys">
+                  <view style="text-align:center;color:#aaa;width:100%;">查看更多>></view>
+                </view>
+                <view wx:if="{{!showmore}}" class="weui-cell weui-cell_access">
+                  <view style="text-align:center;color:#aaa;width:100%;">已无更多数据</view>
+                </view>
+              </view>
+            </scroll-view>
+          </swiper-item>
+          <swiper-item style="height:{{scrollheight}}px;position:absolute;top:0px;width:100%;transform:translate(100%, 0%) translateZ(0px);">
+            <scroll-view style="height:{{scrollheight}}px;" class="weui-tab__content" scroll-y>
+              <view class="weui-panel weui-panel_access">
+                <view class="weui-panel__bd">
+                  <block wx:for="{{reports}}">
+                    <view bindtap="openFile" id="{{item.path}}" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+                      <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                        <view class="weui-media-box__title">{{item.name}} {{item.code}}</view>
+                        <view class="weui-media-box__desc">{{item.title}}</view>
+                        <view class="weui-media-box__desc">{{item.createtime}}</view>
+                      </view>
+                      <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                        <image wx:if="{{item.type==3}}" class="weui-media-box__thumb" src="../images/word.png" />
+                        <image wx:if="{{item.type==1}}" class="weui-media-box__thumb" src="../images/pdf.png" />
+                        <image wx:if="{{item.type==2}}" class="weui-media-box__thumb" src="../images/ppt.png" />
+                      </view>
+                    </view>
+                  </block>
+                  <view wx:if="{{showmore}}" class="weui-cell weui-cell_access" bindtap="loadMoreReports">
+                    <view style="text-align:center;color:#aaa;width:100%;">查看更多>></view>
+                  </view>
+                  <view wx:if="{{!showmore}}" class="weui-cell weui-cell_access">
+                    <view style="text-align:center;color:#aaa;width:100%;">已无更多数据</view>
+                  </view>
+                </view>
+
+              </view>
+            </scroll-view>
+          </swiper-item>
+
+          <swiper-item style="height:{{scrollheight}}px;position:absolute;top:0px;width:100%;transform:translate(400%, 0%) translateZ(0px);">
+            <scroll-view scroll-y style="height:{{scrollheight}}px;background-color:#f8f8f8;" class="weui-tab__content">
+              <block wx:for="{{additions}}">
+                <view style="background-color:white;margin:30rpx 20rpx;border:1px solid #e6e6e6;">
+                  <view style="position:relative;padding:10rpx 20rpx;border-bottom:1px solid #eee;height:40px;">
+                    <view>
+                      {{item.name}}({{item.code}})
+                    </view>
+                    <view wx:if="{{item.isjoin==0}}" style="padding:10rpx 20rpx;position:absolute;top:0rpx;right:10rpx;">
+                      <button bindtap="joinAddition" id="{{index}}" class="weui-btn " type="primary" size="mini">意向参与</button>
+                    </view>
+                    <view wx:if="{{item.isjoin==1}}" style="padding:10rpx 20rpx;position:absolute;top:0rpx;right:10rpx;">
+                      <button class="weui-btn " type="primary" style="background-color:#eee" size="mini">已提交</button>
+                    </view>
+                  </view>
+                  <view style="padding:10rpx 20rpx;">
+                    增发价格：{{item.price}}
+                  </view>
+                  <view style="padding:10rpx 20rpx;">
+                    增发数量(万股)：{{item.amount}}
+                  </view>
+                  <view style="padding:10rpx 20rpx;">
+                    预计募集资金(万元)：{{item.mjzj}}
+                  </view>
+                  <view style="padding:10rpx 20rpx;">
+                    方案进度：{{item.fajd}}
+                  </view>
+                  <view style="padding:10rpx 20rpx;">
+                    预案公告日：{{item.yaggr}}
+                  </view>
+
+                </view>
+              </block>
+              <view wx:if="{{showmore}}" class="weui-cell weui-cell_access" bindtap="loadMoreAdditions">
+                <view style="text-align:center;color:#aaa;width:100%;">查看更多>></view>
+              </view>
+              <view wx:if="{{!showmore}}" class="weui-cell weui-cell_access">
+                <view style="text-align:center;color:#aaa;width:100%;">已无更多数据</view>
+              </view>
+            </scroll-view>
+          </swiper-item>
+        </swiper>
+      </view>
+    </view>
+  </view>
+</view>

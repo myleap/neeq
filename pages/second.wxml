@@ -1,0 +1,83 @@
+<view class="page">
+  <view class="">
+    
+    <view class="weui-tab">
+      <scroll-view class="navbar" scroll-x>
+        <block wx:for="{{tabs}}" wx:key="*this">
+          <view id="{{index}}" style="width:{{barwidth}}px;" class="navbar-item {{activeIndex == index ? 'active' : ''}}" bindtap="tabClick">{{item}}</view>
+        </block>
+      </scroll-view>
+      <view class="weui-tab__panel">
+        <swiper style="height:{{scrollheight}}px;" bindchange="changeEvent" current="{{activeIndex}}">
+          <swiper-item style="height:{{scrollheight}}px;position:absolute;top:0px;width:100%;transform:translate(0%, 0%) translateZ(0px);">
+            <scroll-view style="height:{{scrollheight}}px;" bindscrolltolower="scrolltobottom" scroll-y class="weui-tab__content" >
+              <view class="weui-panel">
+                <view class="weui-panel__bd">
+                <block wx:for="{{roadshows}}">
+                  <navigator url="./roadshow/detail?id={{item.id}}" class="weui-media-box weui-media-box_text">
+                    <view class="weui-media-box__title weui-media-box__title_in-text">{{item.title}}</view>
+                    <view class="weui-media-box__desc">
+                      <image src="{{item.thumb}}" style="width:100%;height:{{ht}}px"></image>
+                    </view>
+                    <view class="weui-media-box__info" style="position:relative;">
+                     
+                      <view class="weui-media-box__info__meta" style="line-height:2.3;font-size:13px;">{{item.starttime}}</view>
+                      <view class="weui-media-box__info__meta" style="line-height:2.3;font-size:13px;">{{item.city}}</view>
+                      <view style="position:absolute;right:10px;" id="{{index}}" catchtap="joinRoadshow" wx:if="{{item.canjoin==1}}">
+                        <button class="weui-btn mini-btn" type="primary" size="mini">报名</button>
+                    </view>
+                    <view style="position:absolute;right:10px;" wx:if="{{item.canjoin==2}}">
+                        <button style="background-color:#ddd;" class="weui-btn mini-btn" type="primary" size="mini">已报名</button>
+                    </view>
+                    </view>
+                    
+                  </navigator>
+                  </block>
+                  <view wx:if="{{showmore}}" class="weui-cell weui-cell_access" bindtap="loadMoreRoadshows" >
+                <view style="text-align:center;color:#aaa;width:100%;">查看更多>></view>
+                </view>
+                <view wx:if="{{!showmore}}" class="weui-cell weui-cell_access">
+                <view style="text-align:center;color:#aaa;width:100%;">已无更多数据</view>
+                </view>
+                </view>
+              </view>
+            </scroll-view>
+          </swiper-item>
+          <swiper-item style="height:{{scrollheight}}px;position:absolute;top:0px;width:100%;transform:translate(100%, 0%) translateZ(0px);">
+            <scroll-view scroll-y style="height:{{scrollheight}}px;"  class="weui-tab__content">
+             <view class="weui-panel">
+                <view class="weui-panel__bd">
+                <block wx:for="{{surveys}}">
+                  <navigator url="./survey/detail?id={{item.id}}" class="weui-media-box weui-media-box_text">
+                    <view class="weui-media-box__title weui-media-box__title_in-text">{{item.title}}</view>
+                    <view class="weui-media-box__desc">
+                      <image src="{{item.thumb}}" style="width:100%;height:{{ht}}px"></image>
+                    </view>
+                    <view class="weui-media-box__info">
+                     
+                      <view class="weui-media-box__info__meta" style="line-height:2.3;font-size:13px;">{{item.starttime}}</view>
+                    <view style="position:absolute;right:10px;"  id="{{index}}" catchtap="joinSurvey" wx:if="{{item.canjoin==1}}">
+                        <button class="weui-btn mini-btn" type="primary" size="mini">报名</button>
+                    </view>
+                    <view style="position:absolute;right:10px;" wx:if="{{item.canjoin==2}}">
+                        <button style="background-color:#ddd;" class="weui-btn mini-btn" type="primary" size="mini">已报名</button>
+                    </view>
+                    </view>
+                    
+                  </navigator>
+                  </block>
+                  <view wx:if="{{showmore}}" class="weui-cell weui-cell_access" bindtap="loadMoreSurveys" >
+                <view style="text-align:center;color:#aaa;width:100%;">查看更多>></view>
+                </view>
+                <view wx:if="{{!showmore}}" class="weui-cell weui-cell_access">
+                <view style="text-align:center;color:#aaa;width:100%;">已无更多数据</view>
+                </view>
+                </view>
+              </view>
+            </scroll-view>
+          </swiper-item>
+        </swiper>
+      </view>
+    </view>
+  </view>
+</view>

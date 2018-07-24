@@ -1,0 +1,19 @@
+.navbar{
+	width: 100%;
+	white-space: nowrap;
+	background-color:white;
+    z-index:2;
+}
+.navbar-item{
+	display: inline-block;
+	padding:10px 15px;
+	font-size:15px;
+	text-align:center;
+}
+.navbar .active{
+	color:red;
+	border-bottom:2px solid red;
+}
+.weui-tab__panel{
+	padding-top:0px;
+}

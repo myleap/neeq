@@ -1,0 +1,64 @@
+<view class="">
+    <view wx:if="{{errorInfo}}" style="font-size:16px;text-align:center;color:rgb(245,72,74);background-color:white;">
+        <icon type="warn" size="16"></icon>{{errorInfo}}
+    </view>
+    <form bindsubmit="submitAddition">
+	<view class="weui-cells__title">
+	公司名
+	</view>
+	<view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__bd">
+                    <input  name="company" class="weui-input" placeholder="请输入公司名称或代码" />
+                </view>
+            </view>
+        </view>
+	<view class="weui-cells__title">
+	增发价格
+	</view>
+	<view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__bd">
+                    <input type="digit" name="zfjg" class="weui-input" placeholder="" />
+                </view>
+            </view>
+        </view>
+        <view class="weui-cells__title">
+	增发数量（万股）
+	</view>
+	<view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__bd">
+                    <input type="digit" name="zfsl" class="weui-input" placeholder="" />
+                </view>
+            </view>
+        </view>
+        <view class="weui-cells__title">
+	预计募集资金（万元）
+	</view>
+	<view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__bd">
+                    <input type="digit" name="mjzj" class="weui-input" placeholder="" />
+                </view>
+            </view>
+        </view>
+         <view class="weui-cells__title">
+	公告时间
+	</view>
+        <view class="weui-cells weui-cells_after-title">
+     
+         <view class="weui-cell weui-cell_input">
+               
+                <view class="weui-cell__bd">
+                    <picker mode="date" value="{{date}}" start="{{date}}" bindchange="bindDateChange">
+                        <view class="weui-input">{{date}}</view>
+                    </picker>
+                </view>
+            </view>
+            </view>
+        <view class="weui-btn-area">
+            <button class="weui-btn" form-type="submit" type="primary">提交</button>
+        </view>
+        </form>
+</view>

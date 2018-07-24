@@ -1,0 +1,74 @@
+{
+    "pages": [
+        "pages/index",
+        "pages/first",
+        "pages/second",
+        "pages/third",
+        "pages/evaluate/create",
+        "pages/company/search",
+        "pages/company/list",
+        "pages/company/detail",
+        "pages/my/suggestcompany",
+        "pages/survey/create",
+        "pages/my/certification",
+        "pages/util/success",
+        "pages/my/note",
+        "pages/my/note/notecompany",
+        "pages/my/note/notearea",
+        "pages/my/note/noteindustry",
+        "pages/evaluate/normalusercreate",
+        "pages/my/note/noteconcept",
+        "pages/company/comment",
+        "pages/roadshow/create",
+        "pages/roadshow/detail",
+        "pages/survey/detail",
+        "pages/my/addition",
+        "pages/my/join",
+        "pages/my/bindmobile"
+    ],
+    "window": {
+        "navigationBarTextStyle": "white",
+        "navigationBarTitleText": "小评新三板",
+        "navigationBarBackgroundColor": "#000000",
+        "backgroundColor": "#000000"
+    },
+    "networkTimeout": {
+        "request": 10000,
+        "connectSocket": 10000,
+        "uploadFile": 10000,
+        "downloadFile": 10000
+    },
+    "tabBar": {
+        "backgroundColor": "#FFFFFF",
+        "borderStyle": "white",
+        "selectedColor": "#d81e06",
+        "color": "#989898",
+        "list": [
+            {
+                "pagePath": "pages/index",
+                "text": "首页",
+                "iconPath": "images/index.png",
+                "selectedIconPath": "images/indexs.png"
+            },
+            {
+                "pagePath": "pages/first",
+                "text": "评价",
+                "iconPath": "images/pj.png",
+                "selectedIconPath": "images/pjs.png"
+            },
+            {
+                "pagePath": "pages/second",
+                "text": "小调",
+                "iconPath": "images/data.png",
+                "selectedIconPath": "images/datas.png"
+            },
+            {
+                "pagePath": "pages/third",
+                "text": "我的",
+                "iconPath": "images/user.png",
+                "selectedIconPath": "images/users.png"
+            }
+        ]
+    },
+    "debug": true
+}

@@ -1,0 +1,30 @@
+<view class="">
+    <view wx:if="{{errorInfo}}" style="font-size:16px;text-align:center;color:rgb(245,72,74);background-color:white;">
+        <icon type="warn" size="16"></icon>{{errorInfo}}
+    </view>
+    <form bindsubmit="submitSuggest">
+	<view class="weui-cells__title">
+	公司名
+	</view>
+	<view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__bd">
+                    <input name="company" class="weui-input" placeholder="请输入公司名称或代码" />
+                </view>
+            </view>
+        </view>
+	<view class="weui-cells__title">
+	推荐原因
+	</view>
+	<view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell">
+                <view class="weui-cell__bd">
+                    <textarea maxlength="-1" class="weui-textarea" name="reason" placeholder="请输入推荐原因" style="height: 3.3em" />
+                </view>
+            </view>
+        </view>
+        <view class="weui-btn-area">
+            <button class="weui-btn" form-type="submit" type="primary">提交推荐</button>
+        </view>
+        </form>
+</view>

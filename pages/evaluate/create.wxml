@@ -1,0 +1,39 @@
+<scroll-view>
+  <view class="page__bd_spacing">
+    <view>
+      <text>
+      {{name}}({{code}})
+      从行业景气、创新能力、核心竞争力、公司治理、财务指标、资本运作六大方面全面立体评价新三板企业
+      </text>
+    </view>
+   
+    <block wx:if="{{userType!=0}}" wx:for="{{indicators}}" wx:for-item="mainitem" wx:for-index="mainIndex">
+    <view style="margin-top:10px;">
+      <text style="font-weight:bold;">{{mainIndex+1}}、{{mainitem.mainTitle}}</text>
+    </view>
+    <block wx:for="{{mainitem.subIndicators}}" wx:for-item="subitem" wx:for-index="subIndex">
+      <view>
+        <text>
+          {{subitem.title}}
+        </text>
+        <view style="background-color:white;">
+          <view style="border-bottom:1rpx solid #D9D9D9;padding-left:5rpx;padding-right:5rpx;">
+            <text style="margin-left:5rpx;">差</text> <text style='float:right;margin-right:5rpx;'>好</text>
+          </view>
+          <view>
+            <block wx:for="{{stars}}" wx:key="item.id">
+              <image class="star-image" style="left: {{item*90}}rpx" src="{{subitem.key>item ?((subitem.key-item) == 0.5?halfSrc:selectedSrc) : normalSrc}}">
+                <view class="item" style="left:0rpx" data-key="{{item+0.5}}" data-subid="{{subIndex}}" data-id="{{mainIndex}}" bindtap="selectLeft"></view>
+                <view class="item" style="left:30rpx" data-key="{{item+1}}" data-subid="{{subIndex}}" data-id="{{mainIndex}}" bindtap="selectRight"></view>
+              </image>
+            </block>
+          </view>
+        </view>
+      </view>
+    </block>
+    </block>
+    <view style="margin-top:20px" class="page__bd page__bd_spacing">
+        <button bindtap="submitEvaluate" class="weui-btn" type="primary">提交评价</button>
+    </view>
+  </view>
+</scroll-view>

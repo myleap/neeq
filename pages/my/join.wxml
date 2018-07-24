@@ -1,0 +1,66 @@
+<view style="padding:20rpx 30rpx;">
+  <view style="font-size:40rpx;color:#ff0000;text-align:center;">
+    深圳市企业战略并购促进会入会申请
+  </view>
+  <text style="font-size:35rpx;">
+    深圳市企业战略并购促进会于 2015 年在深圳市成立，是一家在民政局正式登记备案的非营利社团法人机构，注册登记号为社证字第 01253 号。 深圳市企业战略并购促进会致力于搭建互助共赢的沟通平台，让境内外上市公司与国内优秀企业之间有充分的沟通交流和业务撮合的机会，全方位推动经济转型和产业升级。为中国多层次资本市场的广大客户提供战略顾问、并购操作、管理咨询、资产评估、融资安排、法律及财务等投行服务。促进会拟在年内发展吸纳超百家上市公司会员，欢迎您成为我们其中的一员。
+  </text>
+  <view wx:if="{{errorInfo}}" style="font-size:16px;text-align:center;color:rgb(245,72,74);background-color:white;">
+        <icon type="warn" size="16"></icon>{{errorInfo}}
+    </view>
+  <form bindsubmit="submitJoinMember">
+    <view class="weui-cells__title">
+      1、请输入公司信息：
+    </view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__bd">
+          <input type="number" name="code" class="weui-input" placeholder="请输入公司代码" />
+        </view>
+      </view>
+    </view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__bd">
+          <input name="name" class="weui-input" placeholder="请输入公司名称" />
+        </view>
+      </view>
+    </view>
+    <view class="weui-cells__title">
+      2、请输入您的融资意向
+    </view>
+    <view class="weui-cells weui-cells_after-title">
+            <checkbox-group bindchange="checkboxChange">
+                <label class="weui-cell weui-check__label" wx:for="{{checkboxItems}}" wx:key="value">
+                    <checkbox class="weui-check" value="{{item.value}}" checked="{{item.checked}}"/>
+
+                    <view class="weui-cell__hd weui-check__hd_in-checkbox">
+                        <icon class="weui-icon-checkbox_circle" type="circle" size="23" wx:if="{{!item.checked}}"></icon>
+                        <icon class="weui-icon-checkbox_success" type="success" size="23" wx:if="{{item.checked}}"></icon>
+                    </view>
+                    <view class="weui-cell__bd">{{item.name}}</view>
+                </label>
+            </checkbox-group>
+        </view>
+        <view class="weui-cells__title">
+      2、请输入您的联系人信息：
+    </view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__bd">
+          <input  name="contacts" class="weui-input" placeholder="请输入联系人姓名" />
+        </view>
+      </view>
+    </view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__bd">
+          <input name="contactsmobile" type="number" class="weui-input" placeholder="请输入联系方式" />
+        </view>
+      </view>
+    </view>
+     <view class="weui-btn-area">
+            <button class="weui-btn" form-type="submit" type="primary">提交</button>
+        </view>
+  </form>
+</view>
